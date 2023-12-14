@@ -1,8 +1,8 @@
 var mongoose = require( 'mongoose');
-var dbURl='mongodb://localhost/mekanbul';
-mongoose.connect(dbURl);
+var dbURI='mongodb://localhost/mekanbul';
+mongoose.connect(dbURI);
 mongoose.connection.on("connected",function(){
-    console.log(dbURl+" adresine bağlandı");
+    console.log(dbURI+" adresine bağlandı");
 });
 mongoose.connection.on("error",function(){
     console.log("bağlantıda hata");
@@ -10,8 +10,10 @@ mongoose.connection.on("error",function(){
 mongoose.connection.on("disconnected",function(){
     console.log(" bağlantı koptu");
 });
+//uygulama kapandığında kapat
 process.on("SIGINT",function(){
     mongoose.connection.closed();
     console.log("Uygulama kapatıldı");
     process.exit(0);
 })
+require("./venue");
