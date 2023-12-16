@@ -1,5 +1,5 @@
 var mongoose = require( 'mongoose');
-var dbURI='mongodb://localhost/mekanbul';
+var dbURI='mongodb+srv://zkan:1234@mekanbul.bg5mbw6.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(dbURI);
 mongoose.connection.on("connected",function(){
     console.log(dbURI+" adresine bağlandı");
