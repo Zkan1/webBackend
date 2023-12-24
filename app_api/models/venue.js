@@ -23,8 +23,10 @@ var mongoose = require( "mongoose" );
     name: {type:String,required:true},
     address: String,
     rating: {type:Number,min:0,max:5,default:0},
-    coordinates:{type:Number,index:"2dsphere"},
+    coordinates:{type:[Number],index:"2dsphere"},
     foodanddrink: [String],
     hours:[hour],
     comments:[comment]
  });
+
+ mongoose.model("venue",venue,"venues");
