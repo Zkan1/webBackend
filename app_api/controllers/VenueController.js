@@ -85,15 +85,14 @@ const deleteVenue=function(req,res){
     createResponse(res,200,{status:"delete Başarılı"});
 };
 
-const deneme=function(req,res){
-    res.json({yazi:'yazi'})
-};
+
+
+
 
 module.exports={
     listVenue,
     addVenue,
     getVenue,
     updateVenue,
-    deleteVenue,
-    deneme
+    deleteVenue 
 }

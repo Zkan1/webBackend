@@ -31,7 +31,7 @@ const getComment=async function(req,res){
                     response={
                         venue:{
                             name:venue.name,
-                            id:req.params.venueid,
+                            id:req.params.venueId,
                         },
                         comment:comment,
                     };
