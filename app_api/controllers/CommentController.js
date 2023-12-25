@@ -11,7 +11,7 @@ const addComment = function(req,res){
 
 const getComment=async function(req,res){
     try{
-        await Venue.findById(req.params.venueid)
+        await Venue.findById(req.params.venueId)
         .select("name comments")
         .exec()
         .then(function (venue){
@@ -22,7 +22,7 @@ const getComment=async function(req,res){
                 });
                 return;
             }else if (venue.comments && venue.comments.length>0){
-                comment = venue.comments.id(req.params.commentid);
+                comment = venue.comments.id(req.params.commentId);
                 if (!comment){
                     createResponse(res,404,{
                         status:"commentid bulunamadı",
