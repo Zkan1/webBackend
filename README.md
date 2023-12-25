@@ -9,5 +9,5 @@
 ![image](resimler/comments.png)
 
 ## Konuma Göre Mekan Listeleme
-### https://web-backend-five.vercel.app/api/venues/65856518122659bf289a8ca7
+### https://web-backend-five.vercel.app/api/venues?lat=1&long=1
 ![image](resimler/konuma_göre.png)
