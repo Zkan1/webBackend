@@ -1,5 +1,8 @@
 var mongoose=require("mongoose");
 var Venue=mongoose.model("venue");
+const createResponse=function(res,status,content){
+    res.status(status).json(content);
+}
 
 var converter= (function(){
     var earthRadius = 6371; //km
@@ -15,16 +18,13 @@ var converter= (function(){
     };
 })();
 
-const createResponse=function(res,status,content){
-    res.status(status).json(content);
-}
 
-const listVenue=async function(req,res){
+const listVenues= async function(req,res){
     var lat = parseFloat(req.query.lat);
     var long = parseFloat(req.query.long);
 
-    var point={
-        type:"Point",
+    var point = {
+        type: "Point",
         coordinates: [lat,long],
     };
     var geoOptions = {
@@ -33,32 +33,31 @@ const listVenue=async function(req,res){
     };
     try{
         const result = await Venue.aggregate([
-            {
-                $geoNear:{
-                    near:point,
-                    ...geoOptions,
-                },
+        {
+            $geoNear: {
+                near:point,
+                ...geoOptions,
             },
+        },
         ]);
 
         const venues = result.map((venue) => {
-            return  {
-                distance : converter.kilometer2Radian(venue.dis),
+            return{
+                distance: converter.kilometer2Radian(venue.dis),
                 name: venue.name,
-                address: venue.adress,
+                address: venue.address,
                 rating: venue.rating,
                 foodanddrink: venue.foodanddrink,
-                id: venue._Id,
+                id: venue._id_,
             };
         });
         createResponse(res,200,venues);
-    }catch(e){
+    }catch (e){
         createResponse(res,404,{
-            status: "Enlem ve Boylam zorunludur ve sıfırdan farklı olmalıdır",
+            status:"Enlem ve Boylam zorunlu ve sıfırdan farklı olmalı",
         });
     }
 };
-
 
 
 const addVenue=function(req,res){
@@ -90,7 +89,7 @@ const deleteVenue=function(req,res){
 
 
 module.exports={
-    listVenue,
+    listVenues,
     addVenue,
     getVenue,
     updateVenue,

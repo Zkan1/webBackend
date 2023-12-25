@@ -5,7 +5,7 @@ var ctrlComments=require("../controllers/CommentController");
 
 router
 .route("/venues")
-.get(ctrlVenues.getVenue)
+.get(ctrlVenues.listVenues)
 .post(ctrlVenues.addVenue);
 
 router

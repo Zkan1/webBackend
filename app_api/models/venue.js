@@ -21,7 +21,7 @@ var mongoose = require( "mongoose" );
  
  var venue = new mongoose.Schema({
     name: {type:String,required:true},
-    address: String,
+    address: [String],
     rating: {type:Number,min:0,max:5,default:0},
     coordinates:{type:[Number],index:"2dsphere"},
     foodanddrink: [String],
